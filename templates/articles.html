@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div style = "margin-top : 100px", class = 'container text-center'>
+    <h2>Articles</h2>
+    <div class = 'row'>
+    <div class = 'col-md-10 offset-md-10'>
+        <div class = 'col-lg-8'>
+            <form>
+                {% csrf_token %}
+                <input type = 'text' name = 'keyword' class = 'input-sm' maxlength = '64' placeholder = 'Search'>
+                <button type = 'submit' class = 'btn btn-success'>Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <br><hr><br>
+{% if articles %}
+
+{% for article in articles %}
+    <div class="container">
+        <div class="col-lg-13">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <a href = "{% url 'article:detail' article.id %}"><h2 class="fw-bolder mb-1">{{article.title}}</h2></a>
+                    <br>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Posted on {{article.created_date}} by {{article.author.username}}</div>
+                </header>
+                <br>
+                {% if article.article_image %}
+                    <a href = "{% url 'article:detail' article.id %}"><figure class="mb-4"><img class="img-fluid rounded" src="{{article.article_image.url}}" width = '100%' height = '80%' alt=""/></a></figure>                
+                {% else %}
+                {% endif %}
+                <!-- Post content-->
+                <section class="mb-5">
+                    <p>{{article.content|safe|truncatewords:40}}</p>    <!--truncatewords : devamını oku özelliği kazandırır yalnızca 40 kelime gösterir.-->
+                </section>
+                <a href = "{% url 'article:detail' article.id %}" class = 'btn btn-success'>Read More</a>
+                <br><br><hr><br>
+            </article>
+        </div>
+    </div>
+{% endfor %}
+
+{% else %}
+    <div class = 'alert alert-danger'>
+        <p>Any article or articles cannot found. Sign In and create one.</p>
+    </div>
+{% endif %}
+
+{% endblock body %}

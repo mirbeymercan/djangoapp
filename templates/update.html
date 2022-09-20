@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+<!--forms.py ile kolay article ekle sayfası oluşturma-->
+
+{% block body %}
+{% load crispy_forms_tags %}
+    <div style = "margin-top : 100px", class = 'container text-center'>
+        <h3>Update Article</h3>
+        <br><hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form method = 'post' enctype="multipart/form-data">    <!--enctype olmasa resim göstermez-->
+                    {% csrf_token %}            <!--3. kişiler tarafından bilgilerimizi çaldırmamak için-->
+                    {{form.media}}
+                    {{form|crispy}}
+                    <br>
+                    <button type = 'submit' class = 'btn btn-success'>Update</button>
+                </form>
+            </div>
+        </div>
+        <br><hr>
+    </div>
+{% endblock body %}

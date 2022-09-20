@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h3>Control Panel</h3>
+    <br><hr><br>
+    <p>Welcome, {{request.user.username}}
+    </p>
+    <br>
+    <a class = 'btn btn-success' href = "{% url 'article:addarticle' %}">Add Article</a>
+    <br><br><br>
+
+    {% if articles %}
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Created Date</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for article in articles %}
+            <tr>
+                <th scope  = 'row'>{{article.id}}</th>
+                <td><a href = "{% url 'article:detail' article.id %}">{{article.title}}</a></td>
+                <td>{{article.author}}</td>
+                <td>{{article.created_date}}</td>
+                <td><a href = "{% url 'article:update' article.id %}" class = 'btn btn-success'>Update</a></td>
+                <td><a href = "{% url 'article:delete' article.id %}" class = 'btn btn-danger'>Delete</a></td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class = 'alert alert-warning'>
+            <p>You do not have any article yet. If you want to create one more, please click Add Article button.</p>
+        </div>
+    {% endif %}
+
+
+{% endblock body %}

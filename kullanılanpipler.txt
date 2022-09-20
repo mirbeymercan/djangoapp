@@ -1,0 +1,9 @@
+django crispy forms
+pip install django-ckeditor     - django ckeditor (search on google)
+pip install Pillow
+pip install django-cleanup
+
+----------------------
+
+bootstrap 4 alpha 6 içerisinden min.css ve .min.js dosyalarını aldık
+jquery-3.6.1.min.js dosyasını aldık ve layout üzerinde tanımladık

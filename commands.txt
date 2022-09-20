@@ -1,0 +1,5 @@
+py manage.py createsuperuser // admin paneline erişmek için
+py manage.py migrate // database üzerinde tabloları oluşturmak için
+py manage.py runserver // sitemizi localhost üzerinden çalıştırabilmek için
+py manage.py startapp article // blog porjesinin altına article adlı dosya altında da migrations adlı dosya ve py uzantılı dosyalar oluşur
+# migrations : python modülüdür gerekli sql sorgularının, tabloların yapıldığı yerdir
